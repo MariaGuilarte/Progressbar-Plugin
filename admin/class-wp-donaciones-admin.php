@@ -100,9 +100,9 @@ class Wp_Donaciones_Admin {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-donaciones-admin.js', array( 'jquery' ), $this->version, false );
     wp_localize_script( $this->plugin_name, 'ajax_object', ['ajax_url' => admin_url('admin-ajax.php')] );
-    
+
 	}
-  
+
   public function add_menu(){
     add_menu_page(
       'Progress bars',              // Título de la página
@@ -113,50 +113,41 @@ class Wp_Donaciones_Admin {
       'dashicons-admin-plugins'     // Url del ícono
     );
   }
-  
+
   public static function load_html(){
     include 'partials/progress_bars_admin_menu_form.php';
   }
-  
+
   public function store(){
     global $wpdb;
-      
+		$tableName = $wpdb->prefix . 'donar';
+
     $progress_bar = [
       'name'      => $_POST['name'],
       'category'  => $_POST['category'],
       'goal'      => $_POST['goal'],
       'color'     => $_POST['color']
     ];
-    
-    $vars = ['$name' => $_POST['name'], '$category' => $_POST['category'], '$goal' => $_POST['goal'], '$color' => $_POST['color'] ];     
+
+    $vars = ['$name' => $_POST['name'], '$category' => $_POST['category'], '$goal' => $_POST['goal'], '$color' => $_POST['color'] ];
 
     $shortcode = '[wppb name="$name" category="$category" goal="$goal" color="$color"]';
     $progress_bar['shortcode'] = strtr($shortcode, $vars);
-    
-    return $wpdb->insert('wp_donaciones_donar', $progress_bar);
+
+    return $wpdb->insert($tableName, $progress_bar);
     wp_die();
   }
-  
+
   public function list(){
     global $wpdb;
     $sql = 'SELECT * FROM wp_donaciones_donar';
-    
+
     wp_send_json( $wpdb->get_results($sql) );
   }
-  
+
   public function update(){}
-  
+
   public function delete(){}
-  
-  
+
+
 }
-
-
-
-
-
-
-
-
-
-
