@@ -140,7 +140,8 @@ class Wp_Donaciones_Admin {
 
   public function list(){
     global $wpdb;
-    $sql = 'SELECT * FROM wp_donaciones_donar';
+		$tableName = $wpdb->prefix . 'donar';
+    $sql = 'SELECT * FROM ' . $tableName;
 
     wp_send_json( $wpdb->get_results($sql) );
   }
