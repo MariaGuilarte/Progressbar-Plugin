@@ -32,28 +32,27 @@
    $(function() {
       console.log('Progress bar script mounted');
       var storeForm = $('#wppb-create-form');
-      
+
       storeForm.on('submit', function(e){
         e.preventDefault();
-        alert('Progress bar');
         var data = {
           "name"      : $('#name').val(),
           "category"  : $('#category').val(),
           "goal"      : $('#goal').val(),
           "color"     : $('#color').val(),
           "shortcode" : $('#shortcode').val(),
-          
+
           "action"    : 'wppb_store'
         };
-        
+
         $.post(ajax_object.ajax_url, data, function(response){
           console.log('Progress bars admin: ' + response);
         });
       });
-      
+
       $.get(ajax_object.ajax_url, {'action' : 'wppb_list'}, function(response){
         let table = $('#wppb-admin-table tbody');
-        
+
         response.forEach(function(pb){
           console.log('Working');
           let tr = $('<tr></tr>');
@@ -66,5 +65,5 @@
         });
       });
 	 });
-   
+
 })( jQuery );
