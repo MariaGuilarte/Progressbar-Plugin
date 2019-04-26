@@ -1,0 +1,78 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+.wppb-create-form-wrap  {
+  font-family: Segoe UI;
+  font-size: 14px;
+}
+.wppb-carta-header h2 {
+  font-weight: 500;
+  font-size: 16px;
+  margin: 0;
+}
+.wppb-carta {
+  border-radius: 2px;
+  border: 1px solid #ededed;
+  margin: 20px 20px 20px 0;
+  background: #fff;
+}
+.wppb-carta-header {
+  border-bottom: 1px solid #ededed;
+}
+.wppb-carta-header, .wppb-carta-body {
+  padding: 8px 12px;
+}
+table.wppb-admin-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.wppb-admin-table thead {
+  border-bottom: 1px solid #ededed;
+}
+.wppb-admin-table th {
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  border-bottom: 1px solid #ededed;
+  padding: 8px 12px;
+}
+.wppb-admin-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #ededed;
+  color: gray;
+}
+.wppb-admin-table th:first-child, td:first-child {
+  padding-left: 0;
+}
+.wppb-admin-table tr:last-child td {
+  border-bottom: none;
+}
+.wppb-admin-table td.code {
+  font-family: Consolas;
+  font-size: .9em;
+  max-width: 100px;
+  overflow: auto;
+}
+.wppb-create-form-wrap {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 0px;
+}
+.wppb-create-form-wrap .form-group {
+  flex: 1;
+  padding: 0 12px;
+}
+.wppb-create-form-wrap .form-group label {
+  font-size: 14px;
+  font-weight: 500;
+  margin-botto: 5px;
+  display: block;
+}
+.wppb-create-form-wrap .form-group input,
+.wppb-create-form-wrap .form-group select {
+  width: 100%;
+  height: 25px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
