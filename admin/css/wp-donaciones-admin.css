@@ -105,3 +105,21 @@ table.wppb-admin-table {
   margin: 5px 5px 0;
   visibility: visible;
 }
+
+.edit-progress-bar-form {
+  display: none;
+}
+
+#edit-progress-bar-id {
+  display: none;
+  color: red;
+  font-weight: 500;
+  margin-left: 10px;
+  font-size: 1.25em;
+  color: #6788b1;
+}
+
+#edit-progress-bar-id:before {
+  content: '#';
+  display: inline-block;
+}

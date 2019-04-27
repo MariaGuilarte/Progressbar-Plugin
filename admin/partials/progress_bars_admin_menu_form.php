@@ -74,6 +74,57 @@ foreach ($categories as $cat) {
     </form>
   </div>
 </div>
+
+<!-- Edit progress bars form -->
+<div class="wppb-carta edit-progress-bar-form">
+  <div class="wppb-carta-header">
+    <h2 style="display: inline-block;">Actualizar barra de progreso</h2>
+    <span id="edit-progress-bar-id"></span>
+  </div>
+  <div class="wppb-carta-body">
+    <form id="wppb-update-form" method="POST" action="">
+      <div class="wppb-create-form-wrap">
+
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input type="text" name="name" id="edit_name">
+        </div>
+
+        <div class="form-group">
+          <label for="category">Categoría</label>
+          <select name="category" id="edit_category">
+            <?php
+              foreach( $category_names as $cat ){
+                echo '<option value="' . $cat . '">' . $cat . '</option>';
+              }
+            ?>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="color">Color</label>
+          <input type="color" name="color" id="edit_color">
+        </div>
+
+        <div class="form-group">
+          <label for="goal">Objetivo</label>
+          <input type="number" name="goal" id="edit_goal">
+        </div>
+
+        <div class="form-group">
+          <button type="number" id="actualizarBarra" style="margin-top: 20px;">Actualizar</button>
+        </div>
+
+        <input type="hidden" name="id" id="edit_id" readonly>
+
+        <div class="locked-overlay">
+          <div class="spinner"></div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
 <div class="wppb-carta">
   <div class="wppb-carta-header">
     <h2>Todas las barras de progreso</h2>

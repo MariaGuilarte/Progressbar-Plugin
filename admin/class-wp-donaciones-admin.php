@@ -24,6 +24,9 @@ namespace Admin;
  */
 class Wp_Donaciones_Admin {
 
+	private $tableName;
+
+	private $shortcodeTemplate;
 	/**
 	 * The ID of this plugin.
 	 *
@@ -50,8 +53,12 @@ class Wp_Donaciones_Admin {
 	 * @param      string    $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
+		global $wpdb;
+
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		$this->tableName = $wpdb->prefix . 'donar';
+		$this->shortcodeTemplate = '[wppb name="$name" category="$category" goal="$goal" color="$color"]';
 	}
 
 	public function enqueue_styles() {
@@ -80,15 +87,14 @@ class Wp_Donaciones_Admin {
 
   public function list(){
     global $wpdb;
-		$tableName = $wpdb->prefix . 'donar';
-    $sql = 'SELECT * FROM ' . $tableName;
+    $sql    = 'SELECT * FROM ' . $this->tableName;
+		$result = $wpdb->get_results($sql);
 
-    wp_send_json( $wpdb->get_results($sql) );
+    wp_send_json( $result );
   }
 
 	public function store(){
     global $wpdb;
-		$tableName = $wpdb->prefix . 'donar';
 
     $progress_bar = [
       'name'      => $_POST['name'],
@@ -97,31 +103,51 @@ class Wp_Donaciones_Admin {
       'color'     => $_POST['color']
     ];
 
-    $vars = ['$name' => $_POST['name'], '$category' => $_POST['category'], '$goal' => $_POST['goal'], '$color' => $_POST['color'] ];
-    $shortcode = '[wppb name="$name" category="$category" goal="$goal" color="$color"]';
-    $progress_bar['shortcode'] = strtr($shortcode, $vars);
+		$wpdb->insert($this->tableName, $progress_bar);
+		$id = $wpdb->insert_id;
 
-		$wpdb->insert($tableName, $progress_bar);
-    return wp_send_json( $wpdb->insert_id );
+		$progress_bar['shortcode'] = '[wppb id="' . $id . '"]';
+		$wpdb->update($this->tableName, $progress_bar, ['id' => $id]);
+
+    return wp_send_json( $id );
   }
 
 	public function show(){
 		global $wpdb;
-		$tableName = $wpdb->prefix . 'donar';
-		$pbId = $_GET['id'];
+		$id  = $_GET['id'];
+		$sql = "SELECT * FROM " . $this->tableName . " WHERE id=" . $id;
+		$result = $wpdb->get_results($sql);
 
-		$sql = "SELECT * FROM " . $tableName . " WHERE id=" . $pbId;
-		wp_send_json( $wpdb->get_results($sql) );
+		wp_send_json( $result );
 	}
 
-	public function update(){}
+	public function update(){
+		global $wpdb;
+		$id = $_POST['id'];
+
+    $progress_bar = [
+      'name'      => $_POST['name'],
+      'category'  => $_POST['category'],
+      'goal'      => $_POST['goal'],
+      'color'     => $_POST['color']
+    ];
+		$progress_bar['shortcode'] = '[wppb id="' . $id . '"]';
+
+		$success = $wpdb->update($this->tableName, $progress_bar, ['id' => $id]);
+		$result = ['success'=>$success, 'id'=>$id];
+    wp_send_json( $result );
+	}
 
   public function delete(){
 		global $wpdb;
-		$tableName = $wpdb->prefix . 'donar';
-		$pbId = $_POST['id'];
+		$id = $_POST['id'];
+    wp_send_json( $wpdb->delete($this->tableName, ['id'=>$id] ) );
+	}
 
-    wp_send_json( $wpdb->delete($tableName, ['id'=>$pbId] ) );
+	public function postToShortcode( $data ){
+		$vars      = ['$name' => $data['name'], '$category' => $data['category'], '$goal' => $data['goal'], '$color' => $data['color'] ];
+		$shortcode = strtr($this->shortcodeTemplate, $vars);
+		return $shortcode;
 	}
 
 }

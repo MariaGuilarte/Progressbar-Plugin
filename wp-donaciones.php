@@ -87,20 +87,32 @@ function add_shortcodes_pb(){
 add_shortcodes_pb();
 
 function shortcode_progress_bar($args){
-  $earnings = get_category_total();
+	global $wpdb;
+	$tableName = $wpdb->prefix . 'donar';
 
-  $a = shortcode_atts([
-    'name'     => 'Sin nombre',
+	$a = shortcode_atts([
+    'id'     => null,
     'category' => 'Sin categoría',
     'goal'     => 'Objetivo indefinido',
     'color'    => '#e9ecef'
   ], $args);
-  $width    = ($earnings / $a['goal']) * 100;
+
+	$id  = $a['id'];
+	$sql = "SELECT * FROM " . $tableName . " WHERE id=" . $id;
+	$progress_bar = $wpdb->get_results($sql)[0];
+
+	$earnings = get_category_total();
+
+  $width    = ($earnings / $progress_bar->goal) * 100;
 	$width    = number_format($width, 2);
+
+	if( $width >= 100 ){
+		$width = 100;
+	}
 
   $template = '<div class="progress">
                 <div class="progress-bar" role="progressbar"
-                style="width: ' . $width . '%; background:' . $a['color'] . ';" aria-valuenow="25"
+                style="width:' . $width . '%; background:' . $progress_bar->color . ';" aria-valuenow="25"
                 aria-valuemin="0" aria-valuemax="100">' . $width . '%</div>
               </div>';
 
