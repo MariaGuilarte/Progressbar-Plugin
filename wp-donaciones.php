@@ -15,9 +15,9 @@
  * @wordpress-plugin
  * Plugin Name:       donaciones
  * Plugin URI:        http://arepadevs.website/wp-plugins/donaciones
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Percentage progress bars, based on a WooCommerce category earnings against a goal amount for Corporación Infancia y desarrollo,
  * Version:           1.0.0
- * Author:            David y Maria
+ * Author:            EspartaDevs
  * Author URI:        http://arepadevs.website/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
