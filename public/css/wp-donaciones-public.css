@@ -2,12 +2,12 @@
 * All of the CSS for your public-facing functionality should be
 * included in this file.
 */
-.progress {
+.cid-progress {
   display: -ms-flexbox;
   display: flex;
   padding: 0;
   overflow: hidden;
-  font-size: .75rs-em;
+
   background-color: #c75528;
   border-radius: 2px;
   border: 10px #f4531a solid;
@@ -15,7 +15,7 @@
   box-shadow: 0 4px 15px 3px rgba(0,0,0,.15);
 }
 
-.progress-bar {
+.cid-progress-bar {
   font-size: 2em;
   font-family: "Yanone Kaffeesatz";
   font-weight: 600;

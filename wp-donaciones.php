@@ -110,8 +110,8 @@ function shortcode_progress_bar($args){
 		$width = 100;
 	}
 
-  $template = '<div class="progress">
-                <div class="progress-bar" role="progressbar"
+  $template = '<div class="cid-progress">
+                <div class="cid-progress-bar" role="progressbar"
                 style="width:' . $width . '%; background:' . $progress_bar->color . ';" aria-valuenow="25"
                 aria-valuemin="0" aria-valuemax="100">' . $width . '%</div>
               </div>';

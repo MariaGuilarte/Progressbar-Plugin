@@ -158,7 +158,7 @@ class Wp_Donaciones {
 
     $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
 		$this->loader->add_action( 'wp_ajax_wppb_show', $plugin_admin, 'show' );
-    $this->loader->add_action( 'wp_ajax_wppb_list', $plugin_admin, 'list' );
+    $this->loader->add_action( 'wp_ajax_wppb_list', $plugin_admin, 'listar' );
     $this->loader->add_action( 'wp_ajax_wppb_store', $plugin_admin, 'store' );
     $this->loader->add_action( 'wp_ajax_wppb_update', $plugin_admin, 'update' );
     $this->loader->add_action( 'wp_ajax_wppb_delete', $plugin_admin, 'delete' );

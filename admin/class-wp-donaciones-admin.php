@@ -85,7 +85,7 @@ class Wp_Donaciones_Admin {
     include 'partials/progress_bars_admin_menu_form.php';
   }
 
-  public function list(){
+  public function listar(){
     global $wpdb;
     $sql    = 'SELECT * FROM ' . $this->tableName;
 		$result = $wpdb->get_results($sql);
