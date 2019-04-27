@@ -45,7 +45,7 @@ foreach ($categories as $cat) {
         <div class="form-group">
           <label for="category">Categoría</label>
           <select name="category" id="category">
-            <?php 
+            <?php
               foreach( $category_names as $cat ){
                 echo '<option value="' . $cat . '">' . $cat . '</option>';
               }
@@ -65,6 +65,10 @@ foreach ($categories as $cat) {
 
         <div class="form-group">
           <button type="number" id="guardarBarra" style="margin-top: 20px;">Guardar</button>
+        </div>
+
+        <div class="locked-overlay">
+          <div class="spinner"></div>
         </div>
       </div>
     </form>

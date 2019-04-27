@@ -1,27 +1,29 @@
 /**
- * All of the CSS for your public-facing functionality should be
- * included in this file.
- */
+* All of the CSS for your public-facing functionality should be
+* included in this file.
+*/
 .progress {
-    display: -ms-flexbox;
-    display: flex;
-    height: 1rem;
-    overflow: hidden;
-    font-size: .75rem;
-    background-color: #e9ecef;
-    border-radius: .25rem;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px;
+  overflow: hidden;
+  font-size: .75rem;
+  background-color: #f4531a;
+  border-radius: 2px;
 }
 
 .progress-bar {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -ms-flex-pack: center;
-    justify-content: center;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    background-color: #007bff;
-    transition: width .6s ease;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  background-color: #007bff;
+  transition: width .6s ease;
+  font-size: 2em;
+  font-family: "Yanone Kaffeesatz";
 }

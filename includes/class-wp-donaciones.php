@@ -79,7 +79,7 @@ class Wp_Donaciones {
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
 	}
-  
+
 	/**
 	 * Load the required dependencies for this plugin.
 	 *
@@ -155,15 +155,16 @@ class Wp_Donaciones {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-    
+
     $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
+		$this->loader->add_action( 'wp_ajax_wppb_show', $plugin_admin, 'show' );
     $this->loader->add_action( 'wp_ajax_wppb_list', $plugin_admin, 'list' );
     $this->loader->add_action( 'wp_ajax_wppb_store', $plugin_admin, 'store' );
-    $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'update' );
-    $this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'delete' );
+    $this->loader->add_action( 'wp_ajax_wppb_update', $plugin_admin, 'update' );
+    $this->loader->add_action( 'wp_ajax_wppb_delete', $plugin_admin, 'delete' );
 
 	}
-  
+
   public function load_html(){
     include 'partials/progress_bars_admin_menu_form.php';
   }

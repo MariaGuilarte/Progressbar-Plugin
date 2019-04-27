@@ -30,40 +30,111 @@
 	 */
 
    $(function() {
-      console.log('Progress bar script mounted');
+		 	loadProgressBars();
       var storeForm = $('#wppb-create-form');
 
       storeForm.on('submit', function(e){
         e.preventDefault();
         var data = {
+					"action"    : 'wppb_store',
           "name"      : $('#name').val(),
           "category"  : $('#category').val(),
           "goal"      : $('#goal').val(),
           "color"     : $('#color').val(),
-          "shortcode" : $('#shortcode').val(),
-
-          "action"    : 'wppb_store'
+          "shortcode" : $('#shortcode').val()
         };
 
+				storeProgressBar(data);
+      });
+
+			function storeProgressBar(data){
+				$('.wppb-create-form-wrap .spinner').show();
+				$('.wppb-create-form-wrap .locked-overlay').css({'display':'flex'});
+
+				clearForm();
+
         $.post(ajax_object.ajax_url, data, function(response){
-          console.log('Progress bars admin: ' + response);
-        });
-      });
+					$('.wppb-create-form-wrap .spinner').hide();
+					$('.wppb-create-form-wrap .locked-overlay').css({'display':'none'});
 
-      $.get(ajax_object.ajax_url, {'action' : 'wppb_list'}, function(response){
-        let table = $('#wppb-admin-table tbody');
+					if( response ){
+						getProgressBar(response);
+					}
 
-        response.forEach(function(pb){
-          console.log('Working');
-          let tr = $('<tr></tr>');
-          tr.append('<td>' + pb.name + '</td>');
-          tr.append('<td>' + pb.category + '</td>');
-          tr.append('<td>' + pb.goal + '</td>');
-          tr.append('<td>' + pb.color + '</td>');
-          tr.append('<td>' + pb.shortcode + '</td>');
-          table.append(tr);
         });
-      });
+			}
+
+			function loadProgressBars(){
+				let table = $('#wppb-admin-table tbody');
+				$.get(ajax_object.ajax_url, {'action' : 'wppb_list'}, function(response){
+	        response.forEach(function(pb){
+	          let tr = $('<tr></tr>');
+						let deleteButton = $('<button class="btn btn-primary" data-id="' + pb.id + '" >Eliminar</button>');
+						deleteButton.on('click', function(e){
+							let id = $( this ).attr('data-id');
+							let domRow = $( e.target ).parent().parent();
+							deleteProgressBar(id, domRow);
+						});
+						let td = $('<td></td>');
+						td.append( deleteButton );
+
+	          tr.append('<td>' + pb.name + '</td>');
+	          tr.append('<td>' + pb.category + '</td>');
+	          tr.append('<td>' + pb.goal + '</td>');
+	          tr.append('<td>' + pb.color + '</td>');
+	          tr.append('<td>' + pb.shortcode + '</td>');
+						tr.append(td);
+	          table.append(tr);
+	        });
+	      });
+			}
+
+			function getProgressBar(id){
+				$.get(ajax_object.ajax_url, {'action' : 'wppb_show', 'id': id}, function(response){
+	        let table = $('#wppb-admin-table tbody');
+
+	        if( response.length ){
+						console.log('id is: ' + id);
+						console.log( response );
+
+						response.forEach(function(pb){
+		          let tr = $('<tr></tr>');
+							let deleteButton = $('<button class="btn btn-primary" data-id="' + pb.id + '" >Eliminar</button>');
+							deleteButton.on('click', function(e){
+								let id = $( this ).attr('data-id');
+								let domRow = $( e.target ).parent().parent();
+								deleteProgressBar(id, domRow);
+							});
+							let td = $('<td></td>');
+							td.append( deleteButton );
+
+		          tr.append('<td>' + pb.name + '</td>');
+		          tr.append('<td>' + pb.category + '</td>');
+		          tr.append('<td>' + pb.goal + '</td>');
+		          tr.append('<td>' + pb.color + '</td>');
+		          tr.append('<td>' + pb.shortcode + '</td>');
+							tr.append(td);
+		          table.append(tr);
+		        });
+					}
+	      });
+			}
+
+			function clearForm(){
+				$('#name').val('');
+				$('#category').val('');
+				$('#goal').val('');
+				$('#color').val('#000000');
+				$('#shortcode').val('');
+			}
+
+			function deleteProgressBar(id, domRow){
+				$.post(ajax_object.ajax_url, {'action' : 'wppb_delete', 'id': id}, function(response){
+	        if(response){
+						domRow.remove();
+					}
+	      });
+			}
 	 });
 
 })( jQuery );

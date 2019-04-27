@@ -50,57 +50,17 @@ class Wp_Donaciones_Admin {
 	 * @param      string    $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
-
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
 	}
 
-	/**
-	 * Register the stylesheets for the admin area.
-	 *
-	 * @since    1.0.0
-	 */
 	public function enqueue_styles() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Wp_Donaciones_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Wp_Donaciones_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-donaciones-admin.css', array(), $this->version, 'all' );
-
 	}
 
-	/**
-	 * Register the JavaScript for the admin area.
-	 *
-	 * @since    1.0.0
-	 */
 	public function enqueue_scripts() {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Wp_Donaciones_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Wp_Donaciones_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-donaciones-admin.js', array( 'jquery' ), $this->version, false );
     wp_localize_script( $this->plugin_name, 'ajax_object', ['ajax_url' => admin_url('admin-ajax.php')] );
-
 	}
 
   public function add_menu(){
@@ -118,7 +78,15 @@ class Wp_Donaciones_Admin {
     include 'partials/progress_bars_admin_menu_form.php';
   }
 
-  public function store(){
+  public function list(){
+    global $wpdb;
+		$tableName = $wpdb->prefix . 'donar';
+    $sql = 'SELECT * FROM ' . $tableName;
+
+    wp_send_json( $wpdb->get_results($sql) );
+  }
+
+	public function store(){
     global $wpdb;
 		$tableName = $wpdb->prefix . 'donar';
 
@@ -130,25 +98,30 @@ class Wp_Donaciones_Admin {
     ];
 
     $vars = ['$name' => $_POST['name'], '$category' => $_POST['category'], '$goal' => $_POST['goal'], '$color' => $_POST['color'] ];
-
     $shortcode = '[wppb name="$name" category="$category" goal="$goal" color="$color"]';
     $progress_bar['shortcode'] = strtr($shortcode, $vars);
 
-    return $wpdb->insert($tableName, $progress_bar);
-    wp_die();
+		$wpdb->insert($tableName, $progress_bar);
+    return wp_send_json( $wpdb->insert_id );
   }
 
-  public function list(){
-    global $wpdb;
+	public function show(){
+		global $wpdb;
 		$tableName = $wpdb->prefix . 'donar';
-    $sql = 'SELECT * FROM ' . $tableName;
+		$pbId = $_GET['id'];
 
-    wp_send_json( $wpdb->get_results($sql) );
-  }
+		$sql = "SELECT * FROM " . $tableName . " WHERE id=" . $pbId;
+		wp_send_json( $wpdb->get_results($sql) );
+	}
 
-  public function update(){}
+	public function update(){}
 
-  public function delete(){}
+  public function delete(){
+		global $wpdb;
+		$tableName = $wpdb->prefix . 'donar';
+		$pbId = $_POST['id'];
 
+    wp_send_json( $wpdb->delete($tableName, ['id'=>$pbId] ) );
+	}
 
 }

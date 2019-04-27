@@ -88,7 +88,7 @@ add_shortcodes_pb();
 
 function shortcode_progress_bar($args){
   $earnings = get_category_total();
-  
+
   $a = shortcode_atts([
     'name'     => 'Sin nombre',
     'category' => 'Sin categoría',
@@ -96,13 +96,14 @@ function shortcode_progress_bar($args){
     'color'    => '#e9ecef'
   ], $args);
   $width    = ($earnings / $a['goal']) * 100;
-  
+	$width    = number_format($width, 2);
+
   $template = '<div class="progress">
-                <div class="progress-bar" role="progressbar" 
-                style="width: ' . $width . '%; background:' . $a['color'] . ';" aria-valuenow="25" 
+                <div class="progress-bar" role="progressbar"
+                style="width: ' . $width . '%; background:' . $a['color'] . ';" aria-valuenow="25"
                 aria-valuemin="0" aria-valuemax="100">' . $width . '%</div>
               </div>';
-  
+
   return $template;
 }
 
@@ -110,9 +111,9 @@ function get_category_total(){
   $products = wc_get_orders([
     'category'   => 'donacion'
   ]);
-  
+
   foreach( $products as $product ){
-    $total += $product->total;  
+    $total += $product->total;
   }
   return $total;
 }

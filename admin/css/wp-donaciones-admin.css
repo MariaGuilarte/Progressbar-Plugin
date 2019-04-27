@@ -16,6 +16,7 @@
   border: 1px solid #ededed;
   margin: 20px 20px 20px 0;
   background: #fff;
+  position: relative;
 }
 .wppb-carta-header {
   border-bottom: 1px solid #ededed;
@@ -38,7 +39,7 @@ table.wppb-admin-table {
   padding: 8px 12px;
 }
 .wppb-admin-table td {
-  padding: 8px 12px;
+  padding: 20px 12px;
   border-bottom: 1px solid #ededed;
   color: gray;
 }
@@ -63,6 +64,9 @@ table.wppb-admin-table {
   flex: 1;
   padding: 0 12px;
 }
+.wppb-create-form-wrap .form-group:first-child {
+  padding-left: 0;
+}
 .wppb-create-form-wrap .form-group label {
   font-size: 14px;
   font-weight: 500;
@@ -75,4 +79,29 @@ table.wppb-admin-table {
   height: 25px;
   font-size: 14px;
   margin-bottom: 10px;
+}
+.wppb-carta .locked-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255,255,255,.7);
+  left: 0;
+  top: 0;
+}
+
+.spinner {
+  background: url('./../../../../../wp-admin/images/spinner-2x.gif') no-repeat;
+  background-size: 32px 32px;
+  display: none;
+  float: right;
+  opacity: .7;
+  filter: alpha(opacity=70);
+  width: 32px;
+  height: 32px;
+  margin: 5px 5px 0;
+  visibility: visible;
 }
