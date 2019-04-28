@@ -6,8 +6,8 @@
  * @link       http://arepadevs.website/
  * @since      1.0.0
  *
- * @package    Wp_Donaciones
- * @subpackage Wp_Donaciones/includes
+ * @package    Cid_Progress_Bars
+ * @subpackage Cid_Progress_Bars/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
- * @package    Wp_Donaciones
- * @subpackage Wp_Donaciones/includes
+ * @package    Cid_Progress_Bars
+ * @subpackage Cid_Progress_Bars/includes
  * @author     David y Maria <mariajoseguilarte@gmail.com>
  */
-class Wp_Donaciones_Activator {
+class Cid_Progress_Bars_Activator {
 
 	/**
 	 * Short Description. (use period)

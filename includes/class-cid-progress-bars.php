@@ -9,8 +9,8 @@
  * @link       http://arepadevs.website/
  * @since      1.0.0
  *
- * @package    Wp_Donaciones
- * @subpackage Wp_Donaciones/includes
+ * @package    Cid_Progress_Bars
+ * @subpackage Cid_Progress_Bars/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Wp_Donaciones
- * @subpackage Wp_Donaciones/includes
+ * @package    Cid_Progress_Bars
+ * @subpackage Cid_Progress_Bars/includes
  * @author     David y Maria <mariajoseguilarte@gmail.com>
  */
-class Wp_Donaciones {
+class Cid_Progress_Bars {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class Wp_Donaciones {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Wp_Donaciones_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Cid_Progress_Bars_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -67,12 +67,12 @@ class Wp_Donaciones {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'WP_DONACIONES_VERSION' ) ) {
-			$this->version = WP_DONACIONES_VERSION;
+		if ( defined( 'CID_PROGRESS_BARS_VERSION' ) ) {
+			$this->version = CID_PROGRESS_BARS_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'wp-donaciones';
+		$this->plugin_name = '-cid-progress-bars';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -85,10 +85,10 @@ class Wp_Donaciones {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - Wp_Donaciones_Loader. Orchestrates the hooks of the plugin.
-	 * - Wp_Donaciones_i18n. Defines internationalization functionality.
-	 * - Wp_Donaciones_Admin. Defines all hooks for the admin area.
-	 * - Wp_Donaciones_Public. Defines all hooks for the public side of the site.
+	 * - Cid_Progress_Bars_Loader. Orchestrates the hooks of the plugin.
+	 * - Cid_Progress_Bars_i18n. Defines internationalization functionality.
+	 * - Cid_Progress_Bars_Admin. Defines all hooks for the admin area.
+	 * - Cid_Progress_Bars_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -102,33 +102,33 @@ class Wp_Donaciones {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-donaciones-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-cid-progress-bars-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-wp-donaciones-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-cid-progress-bars-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-wp-donaciones-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-cid-progress-bars-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-wp-donaciones-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-cid-progress-bars-public.php';
 
-		$this->loader = new Wp_Donaciones_Loader();
+		$this->loader = new Cid_Progress_Bars_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Wp_Donaciones_i18n class in order to set the domain and to register the hook
+	 * Uses the Cid_Progress_Bars_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -136,7 +136,7 @@ class Wp_Donaciones {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Wp_Donaciones_i18n();
+		$plugin_i18n = new Cid_Progress_Bars_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -151,7 +151,7 @@ class Wp_Donaciones {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Admin\Wp_Donaciones_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Admin\Cid_Progress_Bars_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -166,7 +166,7 @@ class Wp_Donaciones {
 	}
 
   public function load_html(){
-    include 'partials/progress_bars_admin_menu_form.php';
+    include 'partials/cid-progress-bars-admin-menu-form.php';
   }
 
 	/**
@@ -178,7 +178,7 @@ class Wp_Donaciones {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Wp_Donaciones_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Cid_Progress_Bars_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -209,7 +209,7 @@ class Wp_Donaciones {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Wp_Donaciones_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Cid_Progress_Bars_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

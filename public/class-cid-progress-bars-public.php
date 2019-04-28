@@ -6,8 +6,8 @@
  * @link       http://arepadevs.website/
  * @since      1.0.0
  *
- * @package    Wp_Donaciones
- * @subpackage Wp_Donaciones/public
+ * @package    Cid_Progress_Bars
+ * @subpackage Cid_Progress_Bars/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Wp_Donaciones
- * @subpackage Wp_Donaciones/public
+ * @package    Cid_Progress_Bars
+ * @subpackage Cid_Progress_Bars/public
  * @author     David y Maria <mariajoseguilarte@gmail.com>
  */
-class Wp_Donaciones_Public {
+class Cid_Progress_Bars_Public {
 
 	/**
 	 * The ID of this plugin.
@@ -65,15 +65,15 @@ class Wp_Donaciones_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Wp_Donaciones_Loader as all of the hooks are defined
+		 * defined in Cid_Progress_Bars_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Wp_Donaciones_Loader will then create the relationship
+		 * The Cid_Progress_Bars_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-donaciones-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/cid-progress-bars-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -88,15 +88,15 @@ class Wp_Donaciones_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Wp_Donaciones_Loader as all of the hooks are defined
+		 * defined in Cid_Progress_Bars_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Wp_Donaciones_Loader will then create the relationship
+		 * The Cid_Progress_Bars_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-donaciones-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/cid-progress-bars-public.js', array( 'jquery' ), $this->version, false );
 
 	}
 

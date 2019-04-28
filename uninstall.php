@@ -22,7 +22,7 @@
  * @link       http://arepadevs.website/
  * @since      1.0.0
  *
- * @package    Wp_Donaciones
+ * @package    Cid_Progress_Bars
  */
 
 // If uninstall not called from WordPress, then exit.

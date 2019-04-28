@@ -6,8 +6,8 @@
  * @link       http://arepadevs.website/
  * @since      1.0.0
  *
- * @package    Wp_Donaciones
- * @subpackage Wp_Donaciones/includes
+ * @package    Cid_Progress_Bars
+ * @subpackage Cid_Progress_Bars/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Wp_Donaciones
- * @subpackage Wp_Donaciones/includes
+ * @package    Cid_Progress_Bars
+ * @subpackage Cid_Progress_Bars/includes
  * @author     David y Maria <mariajoseguilarte@gmail.com>
  */
-class Wp_Donaciones_Loader {
+class Cid_Progress_Bars_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

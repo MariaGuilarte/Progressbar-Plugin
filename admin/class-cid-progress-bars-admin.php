@@ -8,8 +8,8 @@ namespace Admin;
  * @link       http://arepadevs.website/
  * @since      1.0.0
  *
- * @package    Wp_Donaciones
- * @subpackage Wp_Donaciones/admin
+ * @package    Cid_Progress_Bars
+ * @subpackage Cid_Progress_Bars/admin
  */
 
 /**
@@ -18,11 +18,11 @@ namespace Admin;
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Wp_Donaciones
- * @subpackage Wp_Donaciones/admin
+ * @package    Cid_Progress_Bars
+ * @subpackage Cid_Progress_Bars/admin
  * @author     David y Maria <mariajoseguilarte@gmail.com>
  */
-class Wp_Donaciones_Admin {
+class Cid_Progress_Bars_Admin {
 
 	private $tableName;
 
@@ -62,11 +62,11 @@ class Wp_Donaciones_Admin {
 	}
 
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-donaciones-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/cid-progress-bars-admin.css', array(), $this->version, 'all' );
 	}
 
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-donaciones-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/cid-progress-bars-admin.js', array( 'jquery' ), $this->version, false );
     wp_localize_script( $this->plugin_name, 'ajax_object', ['ajax_url' => admin_url('admin-ajax.php')] );
 	}
 
@@ -76,13 +76,13 @@ class Wp_Donaciones_Admin {
       'Progress bars',              // Título del menú
       'manage_options',             // Permisos
       'progress-bars-admin-menu',   // Slug
-       __NAMESPACE__ . '\Wp_Donaciones_Admin::load_html',              // Función
+       __NAMESPACE__ . '\Cid_Progress_Bars_Admin::load_html',              // Función
       'dashicons-admin-plugins'     // Url del ícono
     );
   }
 
   public static function load_html(){
-    include 'partials/progress_bars_admin_menu_form.php';
+    include 'partials/cid-progress-bars-admin-menu-form.php';
   }
 
   public function listar(){

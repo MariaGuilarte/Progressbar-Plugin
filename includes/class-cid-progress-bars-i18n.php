@@ -9,8 +9,8 @@
  * @link       http://arepadevs.website/
  * @since      1.0.0
  *
- * @package    Wp_Donaciones
- * @subpackage Wp_Donaciones/includes
+ * @package    Cid_Progress_Bars
+ * @subpackage Cid_Progress_Bars/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Wp_Donaciones
- * @subpackage Wp_Donaciones/includes
+ * @package    Cid_Progress_Bars
+ * @subpackage Cid_Progress_Bars/includes
  * @author     David y Maria <mariajoseguilarte@gmail.com>
  */
-class Wp_Donaciones_i18n {
+class Cid_Progress_Bars_i18n {
 
 
 	/**
@@ -35,7 +35,7 @@ class Wp_Donaciones_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'wp-donaciones',
+			'-cid-progress-bars',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

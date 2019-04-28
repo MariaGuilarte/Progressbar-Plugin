@@ -8,8 +8,8 @@
  * @link       http://arepadevs.website/
  * @since      1.0.0
  *
- * @package    Wp_Donaciones
- * @subpackage Wp_Donaciones/public/partials
+ * @package    Cid_Progress_Bars
+ * @subpackage Cid_Progress_Bars/public/partials
  */
 ?>
 
