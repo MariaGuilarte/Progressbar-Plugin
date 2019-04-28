@@ -13,8 +13,8 @@
  * @package           Wp_Donaciones
  *
  * @wordpress-plugin
- * Plugin Name:       donaciones
- * Plugin URI:        http://arepadevs.website/wp-plugins/donaciones
+ * Plugin Name:       CID - Progress Bars
+ * Plugin URI:        http://arepadevs.website/wp-plugins/cid_progress
  * Description:       Percentage progress bars, based on a WooCommerce category earnings against a goal amount for Corporación Infancia y desarrollo,
  * Version:           1.0.0
  * Author:            EspartaDevs
