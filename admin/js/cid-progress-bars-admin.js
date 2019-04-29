@@ -67,7 +67,7 @@
         $.post(ajax_object.ajax_url, data, function(response){
 					showSpinner(form, false);
 					if( response ){
-						loadProgressBars(response);
+						appendProgressBarRow( response );
 					}
         });
 			}
@@ -80,7 +80,7 @@
 						$('.edit-progress-bar-form').hide();
 						data.id = response.id;
 						data.shortcode = `[wppb id="${response.id}"]`;
-						appendProgressBarRow( data );
+						loadProgressBars(response);
 						showSpinner(form, false);
 					}
         });
@@ -98,9 +98,9 @@
 
 				let updateButton = $('<button class="btn btn-primary" data-id="' + pb.id + '" >Editar</button>');
 				updateButton.on('click', function(e){
-					let id = $( this ).attr('data-id');
+					let id = $( pb.id ).attr('data-id');
 					let domRow = $( e.target ).parent().parent();
-					editProgressBar(id, domRow);
+					editProgressBar(pb.id, domRow);
 				});
 
 				let td = $('<td></td>');

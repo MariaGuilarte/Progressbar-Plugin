@@ -108,8 +108,9 @@ class Cid_Progress_Bars_Admin {
 
 		$progress_bar['shortcode'] = '[wppb id="' . $id . '"]';
 		$wpdb->update($this->tableName, $progress_bar, ['id' => $id]);
+		$progress_bar['id'] = $id;
 
-    return wp_send_json( $id );
+    return wp_send_json( $progress_bar );
   }
 
 	public function show(){

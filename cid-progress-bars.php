@@ -121,7 +121,8 @@ function shortcode_progress_bar($args){
 
 function get_category_total(){
   $products = wc_get_orders([
-    'category'   => 'donacion'
+    'category'   => 'donacion',
+		'status' => ['processing', 'completed']
   ]);
 
   foreach( $products as $product ){
