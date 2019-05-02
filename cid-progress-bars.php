@@ -101,7 +101,7 @@ function shortcode_progress_bar($args){
 	$sql = "SELECT * FROM " . $tableName . " WHERE id=" . $id;
 	$progress_bar = $wpdb->get_results($sql)[0];
 
-	$earnings = get_category_total();
+	$earnings = get_category_total( $progress_bar->category );
 
   $width    = ($earnings / $progress_bar->goal) * 100;
 	$width    = number_format($width, 2);
@@ -119,9 +119,9 @@ function shortcode_progress_bar($args){
   return $template;
 }
 
-function get_category_total(){
+function get_category_total($category){
   $products = wc_get_orders([
-    'category'   => 'donacion',
+    'category'   => $category,
 		'status' => ['processing', 'completed']
   ]);
 
